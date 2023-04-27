@@ -1,15 +1,18 @@
 %global octpkg molsim
 
+#NOTE *.mex file should be put inti %{_libdir}?
+
 Summary:	A seplib wrapper for GNU Octave
-Name:		octave-%{octpkg}
-Version:	0.9.1
+Name:		octave-molsim
+Version:	0.11.0
 Release:	1
-Url:		https://github.com/jesperschmidthansen/%{octpkg}/
-Source0:	%{url}/archive/v%{version}/%{octpkg}-%{version}.tar.gz
 License:	GPLv3+
 Group:		Sciences/Mathematics
+#Url:		https://packages.octave.org/molsim/
+Url:		https://github.com/jesperschmidthansen/molsim/
+Source0:	https://github.com/jesperschmidthansen/molsim/archive/refs/tags/v%{version}/molsim-%{version}.tar.gz
 
-BuildRequires:	octave-devel >= 3.8.0
+BuildRequires:  octave-devel >= 6.0.0
 
 Requires:	octave(api) = %{octave_api}
 
@@ -17,24 +20,25 @@ Requires(post): octave
 Requires(postun): octave
 
 %description
-A GNU Octave molecular dynamics package.
+molsim is a wrapper for the seplib molecular dynamics library. It 
+allows you to perform molecular simulations of simple atomistic 
+systems, confined fluids, molecular mixtures, polymers and more.
 
 %files
 %license COPYING
 %doc NEWS
 %dir %{octpkgdir}
 %{octpkgdir}/*
+#dir %{octpkglibdir}
+#{octpkglibdir}/*
+#{_metainfodir}/*.metainfo.xml
 
 #---------------------------------------------------------------------------
 
 %prep
 %autosetup -p1 -n %{octpkg}-%{version}
 
-# remove backup files
-#find . -name \*~ -delete
-
 %build
-#export CFLAGS="%{optflags} -std=c99"
 %set_build_flags
 %octave_pkg_build
 
