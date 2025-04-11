@@ -5,7 +5,7 @@
 Summary:	A seplib wrapper for GNU Octave
 Name:		octave-molsim
 Version:	1.0.1
-Release:	1
+Release:	2
 License:	GPLv3+
 Group:		Sciences/Mathematics
 #Url:		https://packages.octave.org/molsim/
